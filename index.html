@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>フォームEFOテスト</title>
+</head>
+<body>
+  <h1>GTMトリガー確認用フォーム</h1>
+  <form id="efoForm">
+    <label>名前: <input type="text" name="name" /></label><br />
+    <label>メール: <input type="email" name="email" /></label><br />
+    <label>電話番号: <input type="tel" name="tel" /></label><br />
+    <button type="submit">送信</button>
+  </form>
+
+  <script>
+    document.querySelector("#efoForm").addEventListener("submit", function (e) {
+      const name = document.querySelector("input[name='name']").value.trim();
+      const email = document.querySelector("input[name='email']").value.trim();
+
+      if (!name || !email) {
+        e.preventDefault();
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "form_incomplete",
+          empty_fields: {
+            name: !name,
+            email: !email
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
