@@ -17,8 +17,10 @@
 
 <body>
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZ7NN2QD"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZ7NN2QD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
   <!-- End Google Tag Manager (noscript) -->
 
   <h1>GTMトリガー確認用フォーム</h1>
@@ -29,20 +31,27 @@
     <button type="submit">送信</button>
   </form>
 
+  <!-- フォーム未入力イベント送信用スクリプト -->
   <script>
     document.querySelector("#efoForm").addEventListener("submit", function (e) {
       const name = document.querySelector("input[name='name']").value.trim();
       const email = document.querySelector("input[name='email']").value.trim();
-      if (!name || !email) {
-        e.preventDefault();
+      const tel = document.querySelector("input[name='tel']").value.trim();
+
+      // 未入力フィールドを抽出
+      const missingFields = [];
+      if (!name) missingFields.push("name");
+      if (!email) missingFields.push("email");
+      if (!tel) missingFields.push("tel");
+
+      if (missingFields.length > 0) {
+        e.preventDefault(); // フォーム送信停止
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: "form_incomplete",
-          empty_fields: {
-            name: !name,
-            email: !email
-          }
+          missing_fields: missingFields
         });
+        alert("未入力の項目があります: " + missingFields.join(", "));
       }
     });
   </script>
