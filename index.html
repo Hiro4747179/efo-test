@@ -1,59 +1,61 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>フォームEFOテスト</title>
-
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NZ7NN2QD');
-  </script>
-  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>2025年度 新卒向け会社説明会｜サンプルネクスト</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZ7NN2QD"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
-  <h1>GTMトリガー確認用フォーム</h1>
-  <form id="efoForm">
-    <label>名前: <input type="text" name="name" /></label><br />
-    <label>メール: <input type="email" name="email" /></label><br />
-    <label>電話番号: <input type="tel" name="tel" /></label><br />
-    <button type="submit">送信</button>
-  </form>
+  <!-- ヒーローセクション -->
+  <section id="hero">
+    <img src="./assets/mars_duck.png" alt="宇宙アヒル先輩">
+    <h1>2025年度 新卒向け<br>会社説明会</h1>
+    <p>チャットで未来をつなぐ、可能性の出会い。</p>
+    <a href="#entry-form" class="cta-btn">説明会に申し込む</a>
+  </section>
 
-  <!-- フォーム未入力イベント送信用スクリプト -->
-  <script>
-    document.querySelector("#efoForm").addEventListener("submit", function (e) {
-      const name = document.querySelector("input[name='name']").value.trim();
-      const email = document.querySelector("input[name='email']").value.trim();
-      const tel = document.querySelector("input[name='tel']").value.trim();
+  <!-- 会社紹介セクション -->
+  <section class="feature">
+    <img src="./assets/mars_duck.png" alt="事業紹介">
+    <div>
+      <h2>次世代チャットソリューションを提供</h2>
+      <p>私たち「株式会社サンプルネクスト」は、会話型インターフェースで企業と顧客をつなぐサービスを開発・提供しています。</p>
+    </div>
+  </section>
 
-      // 未入力フィールドを抽出
-      const missingFields = [];
-      if (!name) missingFields.push("name");
-      if (!email) missingFields.push("email");
-      if (!tel) missingFields.push("tel");
+  <!-- 企業文化セクション -->
+  <section class="feature reverse">
+    <img src="./assets/mars_duck.png" alt="カルチャー紹介">
+    <div>
+      <h2>自由 × 挑戦 を尊重する文化</h2>
+      <p>年次に関係なくチャレンジできる環境で、若手がリーダーシップを発揮しています。</p>
+    </div>
+  </section>
 
-      if (missingFields.length > 0) {
-        e.preventDefault(); // フォーム送信停止
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "form_incomplete",
-          missing_fields: missingFields
-        });
-        alert("未入力の項目があります: " + missingFields.join(", "));
-      }
-    });
-  </script>
+  <!-- 社員紹介セクション -->
+  <section class="feature">
+    <img src="./assets/mars_duck.png" alt="社員の声">
+    <div>
+      <h2>あなたの“らしさ”を大切にします</h2>
+      <p>「人に真摯であること」を大切に、互いを尊重しあうチーム文化が根付いています。</p>
+    </div>
+  </section>
+
+  <!-- 説明会申し込みフォーム -->
+  <section id="entry-form">
+    <h2>説明会のお申し込み</h2>
+    <form id="contact-form">
+      <label for="name">お名前</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">メールアドレス</label>
+      <input type="email" id="email" name="email" required>
+
+      <button type="submit">送信</button>
+    </form>
+  </section>
+
 </body>
 </html>
