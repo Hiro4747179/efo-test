@@ -2,12 +2,12 @@
 <html lang="ja">
 <head>
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NZ7NN2QD');</script>
-<!-- End Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NZ7NN2QD');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>2025年度 新卒向け会社説明会｜サンプルネクスト</title>
@@ -15,9 +15,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZ7NN2QD"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZ7NN2QD"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- ヒーローセクション -->
   <section id="hero">
@@ -57,7 +57,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- 説明会申し込みフォーム -->
   <section id="entry-form">
     <h2>説明会のお申し込み</h2>
-    <form id="contact-form">
+    <form id="contact-form" method="POST" action="https://hooks.zapier.com/hooks/catch/23149007/u34d1dj/">
       <label for="name">お名前</label>
       <input type="text" id="name" name="name" required>
 
@@ -69,21 +69,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="submit">送信</button>
     </form>
   </section>
-<script>
-  document.getElementById("contact-form").addEventListener("submit", function(e) {
-    e.preventDefault(); // フォームの送信を止める
 
+<script>
+  document.getElementById("contact-form").addEventListener("submit", function() {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const tel = document.getElementById("tel").value;
 
-    console.log("✅ フォーム送信データ：", {
-      名前: name,
-      メールアドレス: email,
-      電話番号: tel
-    });
-
-    // GTMにデータ送信（Aパターン用）
+    // GTMにデータ送信（Aパターン）
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
       event: "form_submit",
@@ -92,32 +85,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       tel: tel
     });
 
-    // GAS（Apps Script）へPOST送信 → そこからZapierへ転送
-    fetch("https://script.google.com/a/macros/wevnal.co.jp/s/AKfycbzgsjiFmsBCm4cuYvDTDzOpdgrUDjPyTdGcomVj6zkPC-PtHuASpRjKVuG8aDNoSiK1/exec", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        tel: tel
-      })
-    })
-    .then(response => {
-      if (response.ok) {
-        alert("フォーム内容をGTMとZapier（GAS経由）に送信しました！");
-      } else {
-        alert("Zapier（GAS経由）への送信に失敗しました。");
-      }
-    })
-    .catch(error => {
-      console.error("GAS経由の送信エラー:", error);
-      alert("Zapier送信時にエラーが発生しました。");
-    });
+    // サンクスアラート（任意）
+    alert("フォーム内容をZapierに送信中です（完了後はZapier経由でスプレッドシートへ連携）");
   });
 </script>
-
 
 </body>
 </html>
