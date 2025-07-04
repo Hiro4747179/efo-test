@@ -83,7 +83,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       電話番号: tel
     });
 
-    // GTMにデータ送信
+    // GTMにデータ送信（Aパターン用）
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
       event: "form_submit",
@@ -92,8 +92,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       tel: tel
     });
 
-    // Zapierに送信（Webhook）
-    fetch("https://hooks.zapier.com/hooks/catch/23149007/u34d1dj/", {
+    // GAS（Apps Script）へPOST送信 → そこからZapierへ転送
+    fetch("https://script.google.com/a/macros/wevnal.co.jp/s/AKfycbzgsjiFmsBCm4cuYvDTDzOpdgrUDjPyTdGcomVj6zkPC-PtHuASpRjKVuG8aDNoSiK1/exec", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -106,18 +106,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     })
     .then(response => {
       if (response.ok) {
-        alert("フォーム内容をGTMとZapierに送信しました！");
+        alert("フォーム内容をGTMとZapier（GAS経由）に送信しました！");
       } else {
-        alert("Zapierへの送信に失敗しました。");
+        alert("Zapier（GAS経由）への送信に失敗しました。");
       }
     })
     .catch(error => {
-      console.error("Zapier送信エラー:", error);
+      console.error("GAS経由の送信エラー:", error);
       alert("Zapier送信時にエラーが発生しました。");
     });
   });
 </script>
-
 
 
 </body>
