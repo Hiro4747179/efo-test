@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NZ7NN2QD');</script>
+<!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>2025年度 新卒向け会社説明会｜サンプルネクスト</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZ7NN2QD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
   <!-- ヒーローセクション -->
   <section id="hero">
@@ -53,9 +64,38 @@
       <label for="email">メールアドレス</label>
       <input type="email" id="email" name="email" required>
 
+      <label for="tel">電話番号</label>
+      <input type="tel" id="tel" name="tel" required>
       <button type="submit">送信</button>
     </form>
   </section>
+<script>
+  document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault(); // フォームの送信を止める
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const tel = document.getElementById("tel").value;
+
+    console.log("✅ フォーム送信データ：", {
+      名前: name,
+      メールアドレス: email,
+      電話番号: tel
+    });
+
+    // GTMにデータ送信
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: "form_submit",
+      name: name,
+      email: email,
+      tel: tel
+    });
+
+    alert("フォーム内容をコンソールとGTMに送信しました！");
+  });
+</script>
+
 
 </body>
 </html>
