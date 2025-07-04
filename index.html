@@ -92,9 +92,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       tel: tel
     });
 
-    alert("フォーム内容をコンソールとGTMに送信しました！");
+    // Zapierに送信（Webhook）
+    fetch("https://hooks.zapier.com/hooks/catch/23149007/u34d1dj/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        tel: tel
+      })
+    })
+    .then(response => {
+      if (response.ok) {
+        alert("フォーム内容をGTMとZapierに送信しました！");
+      } else {
+        alert("Zapierへの送信に失敗しました。");
+      }
+    })
+    .catch(error => {
+      console.error("Zapier送信エラー:", error);
+      alert("Zapier送信時にエラーが発生しました。");
+    });
   });
 </script>
+
 
 
 </body>
